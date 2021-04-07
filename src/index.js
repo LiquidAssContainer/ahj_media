@@ -1,2 +1,4 @@
 import './css/main.css';
-import './js/app';
+import TimelineApp from './js/TimelineApp';
+
+const timeline = new TimelineApp();
