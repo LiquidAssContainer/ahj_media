@@ -1,0 +1,32 @@
+@keyframes recording {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.recording {
+  position: relative;
+  transform: scale(1);
+}
+
+.recording > button {
+  background-color: #b7ffb7;
+}
+
+.recording::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: #23d023;
+  border-radius: 50%;
+  animation: recording 1s infinite;
+}

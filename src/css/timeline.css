@@ -21,9 +21,15 @@
 
 .create-post_buttons {
   display: flex;
+  align-items: flex-start;
+}
+
+.btn_wrapper:not(:last-child) {
+  margin-right: 5px;
 }
 
 .create-post_button {
+  display: block;
   width: 24px;
   height: 24px;
   border: 1px solid #000;
@@ -37,12 +43,12 @@
   cursor: pointer;
 }
 
-.create-post_button:disabled {
-  opacity: 0.5;
+.recorded {
+  background-color: #b4dbff;
 }
 
-.create-post_button:not(:last-child) {
-  margin-right: 5px;
+.create-post_button:disabled {
+  opacity: 0.5;
 }
 
 .audio-btn {
@@ -121,6 +127,10 @@
 
 .post-item_content {
   margin-bottom: 10px;
+}
+
+.post-item_audio {
+  max-width: 100%;
 }
 
 .post-item_video {

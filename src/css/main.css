@@ -1,6 +1,7 @@
 @import './timeline.css';
 @import './modal.css';
 @import './error-popup.css';
+@import './recording.css';
 
 * {
   padding: 0;

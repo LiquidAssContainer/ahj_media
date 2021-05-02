@@ -26,16 +26,18 @@ export default class Buttons {
 
   async onClick(btn) {
     const { type } = btn.dataset;
-    // довольно вложенно, да
+    const wrapper = btn.parentElement;
+
     try {
-      if (btn.classList.contains('recording')) {
+      if (wrapper.classList.contains('recording')) {
         this.recorder.stopRecording(type);
-        btn.classList.remove('recording');
+        wrapper.classList.remove('recording');
+        btn.classList.add('recorded');
         this.enableButtons();
       } else {
         if (!this.recorder.isAccessGranted()) return;
         await this.recorder.startRecording(type);
-        btn.classList.add('recording');
+        wrapper.classList.add('recording');
         this.disableButtons(btn);
       }
     } catch (err) {
