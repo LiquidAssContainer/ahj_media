@@ -1,5 +1,6 @@
 import Geo from './models/Geo';
 import PostForm from './models/PostForm/PostForm';
+import createErrorPopup from './utils/createErrorPopup';
 import getPostElem from './utils/getPostElem';
 
 export default class TimelineApp {
@@ -19,6 +20,6 @@ export default class TimelineApp {
   }
 
   showError({ message }) {
-    console.log(message);
+    createErrorPopup(message);
   }
 }

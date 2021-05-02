@@ -6,7 +6,7 @@ export default class PostForm {
   constructor(timeline) {
     this.timeline = timeline;
     this.geo = timeline.geo;
-    this.recorder = new Recorder(timeline);
+    this.recorder = new Recorder(this);
     this.modal = new Modal(this);
     this.btns = new Buttons(this);
 

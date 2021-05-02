@@ -1,10 +1,10 @@
 export default class Recorder {
-  constructor(timeline) {
+  constructor(postForm) {
     if (!navigator.mediaDevices) {
       throw new Error('В этом браузере не работает медиа(');
     }
-    this.timeline = timeline;
-    this.postForm = timeline.postForm;
+    this.postForm = postForm;
+    this.timeline = postForm.timeline;
   }
 
   isAccessGranted() {
@@ -12,15 +12,10 @@ export default class Recorder {
   }
 
   async startRecording(type) {
-    try {
-      this.stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: type === 'video',
-      });
-    } catch (err) {
-      this.timeline.showError(err);
-      return;
-    }
+    this.stream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: type === 'video',
+    });
 
     this.recorder = new MediaRecorder(this.stream);
     const chunks = [];
@@ -28,7 +23,7 @@ export default class Recorder {
     this.recorder.addEventListener('dataavailable', (evt) => {
       chunks.push(evt.data);
     });
-    this.recorder.addEventListener('stop', (evt) => {
+    this.recorder.addEventListener('stop', () => {
       const blob = new Blob(chunks);
       const src = URL.createObjectURL(blob);
 

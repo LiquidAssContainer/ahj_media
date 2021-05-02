@@ -9,12 +9,14 @@ export default class Geo {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
+          let { latitude, longitude } = position.coords;
+          latitude = latitude.toFixed(6);
+          longitude = longitude.toFixed(6);
           resolve({ latitude, longitude });
         },
         (err) => {
           reject(err);
-        },
+        }
       );
     });
   }

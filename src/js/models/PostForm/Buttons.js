@@ -1,6 +1,7 @@
 export default class Buttons {
   constructor(postForm) {
     this.postForm = postForm;
+    this.timeline = postForm.timeline;
     this.recorder = postForm.recorder;
 
     [this.audioBtn] = document.getElementsByClassName('audio-btn');
@@ -23,17 +24,22 @@ export default class Buttons {
     }
   }
 
-  onClick(btn) {
+  async onClick(btn) {
     const { type } = btn.dataset;
-    if (btn.classList.contains('recording')) {
-      btn.classList.remove('recording');
-      this.enableButtons();
-      this.recorder.stopRecording(type);
-    } else {
-      if (!this.recorder.isAccessGranted()) return;
-      btn.classList.add('recording');
-      this.disableButtons(btn);
-      this.recorder.startRecording(type);
+    // довольно вложенно, да
+    try {
+      if (btn.classList.contains('recording')) {
+        this.recorder.stopRecording(type);
+        btn.classList.remove('recording');
+        this.enableButtons();
+      } else {
+        if (!this.recorder.isAccessGranted()) return;
+        await this.recorder.startRecording(type);
+        btn.classList.add('recording');
+        this.disableButtons(btn);
+      }
+    } catch (err) {
+      this.timeline.showError(err);
     }
   }
 
