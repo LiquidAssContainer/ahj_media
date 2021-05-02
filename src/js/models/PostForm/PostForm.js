@@ -54,6 +54,10 @@ export default class PostForm {
       postData.coords = await this.geo.getPosition();
       this.timeline.insertNewPost(postData);
       this.clearForm();
+
+      const { audioBtn, videoBtn } = this.btns;
+      audioBtn.classList.remove('recorded');
+      videoBtn.classList.remove('recorded');
     } catch {
       this.modal.open();
     }

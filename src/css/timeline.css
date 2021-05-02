@@ -134,8 +134,8 @@
 }
 
 .post-item_video {
-  /* height: 200px; */
   width: 300px;
+  max-width: 100%;
 }
 
 .post-item_coords {
