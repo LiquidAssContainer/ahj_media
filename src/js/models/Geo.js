@@ -16,7 +16,7 @@ export default class Geo {
         },
         (err) => {
           reject(err);
-        }
+        },
       );
     });
   }
